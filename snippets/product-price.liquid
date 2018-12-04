@@ -47,9 +47,12 @@
           {% if compare_at_price > price %}
             {{ compare_at_price | money }}
           {% else %}
-            {% assign price =product.price | money_without_currency | strip_html | times:2  %}
+            {% assign price =product.price | money_without_currency | strip_html | times:tax_line.price  %}
 
             {{ "Rs."  | append: price  }}
+
+
+            
           {% endif %}
         {% else %}
           {{ 'products.product.sold_out' | t }}
@@ -76,7 +79,7 @@
       <span  style="display:none;" class="price-item price-item--sale incvat" data-sale-price>
          {% assign price =product.price | money_without_currency | strip_html | times:2  %}
 
-         {{ "Rs."  | append: price  }}
+         {{ "Rs."  | append: price  }}        
         
       </span>
       <span class="price-item__label" aria-hidden="true">{{ 'products.product.on_sale' | t }}</span>
